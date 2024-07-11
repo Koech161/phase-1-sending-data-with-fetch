@@ -1,7 +1,8 @@
 // Add your code here
-const submitData={
-    name:"Steve",
-    email:"steve@steve.com",
+function submitData(name, email){
+const formData={
+    name:name,
+    email:email
 }
 const configurationObject ={
     method:"POST",
@@ -9,15 +10,21 @@ const configurationObject ={
         "content-Type":"application/json",
         "accept":"application/json",
     },
-    body:JSON.stringify(submitData),
+    body:JSON.stringify(formData)
 }
-fetch("http://localhost:3000/users",configurationObject)
+ return fetch("http://localhost:3000/users",configurationObject)
 .then(function(response){
     return response.json()
 })
 .then(function(data){
+    let h2=document.createElement('h2')
+    h2.innerHTML=data.id
+    document.body.appendChild(h2)
 
 })
 .catch(function(error){
-    alert('error detected')
+    let h3=document.createElement('h3')
+    h3.innerHTML=error.message
+    document.body.appendChild(h3)
 })
+}
